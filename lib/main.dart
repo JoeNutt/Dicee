@@ -9,13 +9,19 @@ void main() {
           title: Text('Dicee'),
           backgroundColor: Colors.red,
         ),
-        body: DicePage(),
+        body: DicePageState(),
       ),
     ),
   );
 }
 
-class DicePage extends StatelessWidget {
+class DicePageState extends StatefulWidget {
+  @override
+  _DicePageStateState createState() => _DicePageStateState();
+}
+
+class _DicePageStateState extends State<DicePageState> {
+  int leftDiceNumber = 1;
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -26,10 +32,13 @@ class DicePage extends StatelessWidget {
               padding: const EdgeInsets.all(16.0),
               child: FlatButton(
                   onPressed: () {
-                    print('Left button has been pressed!');
+                    setState(() {
+                      leftDiceNumber = 5;
+                      print('Dice Number is $leftDiceNumber');
+                    });
                   },
                   child: Image.asset(
-                    'images/dice1.png',
+                    'images/dice$leftDiceNumber.png',
                   )),
             ),
           ),
@@ -38,7 +47,7 @@ class DicePage extends StatelessWidget {
               padding: const EdgeInsets.all(16.0),
               child: FlatButton(
                 onPressed: () {
-                  print('Right button has been pressed'); 
+                  print('Right button has been pressed');
                 },
                 child: Image.asset('images/dice1.png'),
               ),
